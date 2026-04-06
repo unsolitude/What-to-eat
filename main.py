@@ -12,6 +12,7 @@ from tkinter import ttk, messagebox
 import random
 import json
 import os
+import sys
 
 
 class FoodRandomApp:
@@ -51,7 +52,14 @@ class FoodRandomApp:
         self.current_meal_type = tk.StringVar(value='lunch')
         
         # 数据文件路径（与程序同目录）
-        self.data_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'meals_data.json')
+        # PyInstaller 打包后需要使用 sys.executable 获取 exe 路径
+        if getattr(sys, 'frozen', False):
+            # 打包后的 exe 运行
+            app_dir = os.path.dirname(sys.executable)
+        else:
+            # 直接运行 Python 脚本
+            app_dir = os.path.dirname(os.path.abspath(__file__))
+        self.data_file = os.path.join(app_dir, 'meals_data.json')
         
         # 加载已保存的数据
         self.load_data()
