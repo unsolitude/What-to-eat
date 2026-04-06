@@ -1,0 +1,29 @@
+# 编译产物
+dist/
+build/
+*.spec
+
+# 用户数据
+meals_data.json
+
+# 快捷方式
+*.lnk
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db

@@ -1,0 +1,48 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # 当推送 v 开头的标签时触发，如 v1.0.0
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install PyInstaller
+      run: pip install pyinstaller
+    
+    - name: Build executable
+      run: pyinstaller --onefile --windowed --name "今天吃什么" main.py
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: 今天吃什么
+        path: dist/今天吃什么.exe
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/今天吃什么.exe
+        name: Release ${{ github.ref_name }}
+        body: |
+          ## 今天吃什么 ${{ github.ref_name }}
+          
+          ### 下载
+          - 下载 `今天吃什么.exe` 即可使用
+          - 无需安装 Python 环境
+          
+          ### 更新内容
+          - 请查看 README.md 了解详情
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
