@@ -3,7 +3,8 @@
 [![Release](https://img.shields.io/github/v/release/YOUR_USERNAME/今天吃什么?style=flat-square)](https://github.com/YOUR_USERNAME/今天吃什么/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
-解决大学生吃饭难题，纯vibe 无手搓
+解决大学生吃饭吃什么难题，纯vibe 无手搓
+打开dist中的exe即用
 
 ### 1. 选择餐类
 
